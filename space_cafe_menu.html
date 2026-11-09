@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Cafe | M E N U</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-sage: #BAC3AC;
+            --text-navy: #2D394C;
+            --card-bg: rgba(255, 255, 255, 0.25);
+            --card-border: rgba(45, 57, 76, 0.15);
+            --pill-bg: rgba(45, 57, 76, 0.12);
+            --pill-active: #2D394C;
+            --font-en: 'Montserrat', sans-serif;
+            --font-ar: 'Cairo', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-sage);
+            color: var(--text-navy);
+            font-family: var(--font-en);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 60px;
+            overflow-x: hidden;
+        }
+
+        /* HEADER */
+        header {
+            width: 100%;
+            max-width: 600px;
+            padding: 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-icon {
+            background: rgba(255, 255, 255, 0.35);
+            border: 1px solid var(--card-border);
+            color: var(--text-navy);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: relative;
+            font-family: var(--font-ar);
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            backdrop-filter: blur(8px);
+        }
+
+        .btn-cart {
+            width: auto;
+            padding: 0 16px;
+            border-radius: 22px;
+            gap: 6px;
+        }
+
+        .cart-badge {
+            background: var(--text-navy);
+            color: var(--bg-sage);
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        /* LOGO */
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-navy);
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            line-height: 0.95;
+        }
+
+        .logo-title {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .logo-subtitle {
+            font-size: 10px;
+            font-weight: 400;
+            letter-spacing: 3px;
+            opacity: 0.8;
+            margin-top: 2px;
+        }
+
+        .logo-icon {
+            width: 38px;
+            height: 38px;
+        }
+
+        /* HERO / SLOGAN */
+        .hero {
+            text-align: center;
+            margin: 20px 0 25px;
+            padding: 0 20px;
+        }
+
+        .hero-star {
+            font-size: 24px;
+            margin-bottom: 12px;
+            color: var(--text-navy);
+            display: block;
+        }
+
+        .slogan {
+            font-size: 26px;
+            font-weight: 300;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        /* MOON PHASES DECORATION */
+        .moon-phases {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            opacity: 0.75;
+        }
+
+        .moon-icon {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 1.5px solid var(--text-navy);
+            display: inline-block;
+            position: relative;
+        }
+
+        .moon-full { background: var(--text-navy); }
+        .moon-half { background: linear-gradient(90deg, var(--text-navy) 50%, transparent 50%); }
+        .moon-crest { background: linear-gradient(90deg, transparent 50%, var(--text-navy) 50%); }
+
+        /* CATEGORIES FILTER */
+        .categories-wrapper {
+            width: 100%;
+            max-width: 600px;
+            overflow-x: auto;
+            padding: 5px 20px 20px;
+            scrollbar-width: none;
+            direction: ltr; /* إجبار الشريط على أن يكون من اليسار لليمين */
+        }
+        .categories-wrapper::-webkit-scrollbar { display: none; }
+
+        .categories {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-start;
+            flex-direction: row;
+            width: max-content;
+        }
+
+        .cat-btn {
+            background: rgba(45, 57, 76, 0.05);
+            color: var(--text-navy);
+            border: 1px solid rgba(45, 57, 76, 0.25);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.25s ease;
+            font-family: var(--font-en);
+        }
+
+        .cat-btn.active {
+            background: var(--text-navy);
+            color: var(--bg-sage);
+            border-color: var(--text-navy);
+            box-shadow: 0 4px 12px rgba(45, 57, 76, 0.2);
+        }
+
+        /* SECTION TITLE */
+        .section-title {
+            text-align: center;
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            margin: 10px 0 20px;
+            position: relative;
+            padding-bottom: 8px;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 1.5px;
+            background: var(--text-navy);
+            opacity: 0.5;
+        }
+
+        /* MENU LIST */
+        .menu-container {
+            width: 100%;
+            max-width: 600px;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .item-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 18px;
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .item-card:active {
+            transform: scale(0.98);
+        }
+
+        .item-info {
+            text-align: right;
+        }
+
+        .item-name {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: var(--text-navy);
+        }
+
+        .item-price {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            opacity: 0.85;
+        }
+
+        .add-btn {
+            background: var(--text-navy);
+            color: var(--bg-sage);
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.2s;
+        }
+
+        .add-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* MODAL & DRAWER */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .drawer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #A8B29A;
+            border-top-left-radius: 28px;
+            border-top-right-radius: 28px;
+            padding: 24px;
+            max-height: 85vh;
+            overflow-y: auto;
+            transform: translateY(100%);
+            transition: transform 0.3s cubic-bezier(0.1, 0.9, 0.2, 1);
+            z-index: 101;
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.15);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .drawer.active {
+            transform: translateY(0);
+        }
+
+        .drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(45, 57, 76, 0.15);
+            padding-bottom: 12px;
+        }
+
+        .drawer-title {
+            font-family: var(--font-ar);
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: var(--text-navy);
+            cursor: pointer;
+        }
+
+        .cart-items {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.3);
+            padding: 12px 16px;
+            border-radius: 12px;
+        }
+
+        .qty-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .qty-btn {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            border: 1px solid var(--text-navy);
+            background: none;
+            color: var(--text-navy);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .form-group {
+            margin-bottom: 14px;
+            text-align: right;
+            font-family: var(--font-ar);
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px 14px;
+            border-radius: 10px;
+            border: 1px solid var(--card-border);
+            background: rgba(255, 255, 255, 0.5);
+            color: var(--text-navy);
+            font-family: var(--font-ar);
+            font-size: 14px;
+            outline: none;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: var(--text-navy);
+            color: var(--bg-sage);
+            border: none;
+            padding: 14px;
+            border-radius: 14px;
+            font-family: var(--font-ar);
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        /* TOAST */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--text-navy);
+            color: var(--bg-sage);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-family: var(--font-ar);
+            font-size: 13px;
+            transition: transform 0.3s ease;
+            z-index: 200;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="header-actions">
+            <button class="btn-icon btn-cart" onclick="toggleCart()">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span>السلة</span>
+                <span class="cart-badge" id="cartBadge">0</span>
+            </button>
+            <button class="btn-icon" onclick="openSettings()" title="إعدادات n8n Webhook">
+                <i class="fa-solid fa-gear"></i>
+            </button>
+            <button class="btn-icon" onclick="openAdmin()" title="لوحة الإدارة">
+                <i class="fa-solid fa-lock"></i>
+            </button>
+        </div>
+
+        <a href="#" class="brand-logo">
+            <div class="logo-text">
+                <span class="logo-title">SPACE</span>
+                <span class="logo-subtitle">CAFE</span>
+            </div>
+            <svg class="logo-icon" viewBox="0 0 100 100" fill="none" style="width: 50px; height: 50px;">
+                <!-- S Shape -->
+                <path d="M 65 30 C 55 15, 35 15, 35 35 C 35 55, 65 50, 65 70 C 65 90, 45 90, 35 80" stroke="var(--text-navy)" stroke-width="9" stroke-linecap="round" fill="none" />
+                <!-- Back ring (top-right) -->
+                <path d="M 80 48 C 75 35, 45 30, 20 58" stroke="var(--text-navy)" stroke-width="3" stroke-linecap="round" fill="none" />
+                <!-- Front ring (bottom-left) -->
+                <path d="M 20 58 C 15 70, 45 80, 80 48" stroke="var(--text-navy)" stroke-width="7" stroke-linecap="round" fill="none" />
+                <!-- Stars -->
+                <path d="M 72 25 Q 76 25 76 21 Q 76 25 80 25 Q 76 25 76 29 Q 76 25 72 25 Z" fill="var(--text-navy)"/>
+                <path d="M 76 65 Q 79 65 79 62 Q 79 65 82 65 Q 79 65 79 68 Q 79 65 76 65 Z" fill="var(--text-navy)"/>
+            </svg>
+        </a>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <span class="hero-star">✦</span>
+        <h1 class="slogan">OUT OF THIS WORLD</h1>
+        <div class="moon-phases">
+            <span class="moon-icon moon-full"></span>
+            <span class="moon-icon moon-half"></span>
+            <span class="moon-icon moon-crest"></span>
+            <span class="moon-icon moon-full"></span>
+            <span class="moon-icon moon-crest"></span>
+            <span class="moon-icon moon-half"></span>
+            <span class="moon-icon moon-full"></span>
+        </div>
+    </section>
+
+    <!-- CATEGORIES -->
+    <div class="categories-wrapper">
+        <div class="categories">
+            <button class="cat-btn active" onclick="filterCategory('ALL', this)">ALL</button>
+            <button class="cat-btn" onclick="filterCategory('COFFEE', this)">COFFEE</button>
+            <button class="cat-btn" onclick="filterCategory('FILTER COFFEE', this)">FILTER COFFEE</button>
+            <button class="cat-btn" onclick="filterCategory('SIGNATURES', this)">SIGNATURES</button>
+            <button class="cat-btn" onclick="filterCategory('MATCHA', this)">MATCHA</button>
+            <button class="cat-btn" onclick="filterCategory('TEA', this)">TEA</button>
+            <button class="cat-btn" onclick="filterCategory('SWEETS', this)">SWEETS</button>
+        </div>
+    </div>
+
+    <!-- SECTION TITLE -->
+    <h2 class="section-title">MENU</h2>
+
+    <!-- MENU ITEMS CONTAINER -->
+    <div class="menu-container" id="menuList">
+        <!-- Rendered via JS -->
+    </div>
+
+    <!-- OVERLAY -->
+    <div class="modal-overlay" id="overlay" onclick="closeAllModals()"></div>
+
+    <!-- CART DRAWER -->
+    <div class="drawer" id="cartDrawer">
+        <div class="drawer-header">
+            <h3 class="drawer-title">سلة الطلبات</h3>
+            <button class="close-btn" onclick="toggleCart()">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Items rendered via JS -->
+        </div>
+        
+        <div class="form-group">
+            <label>اسمك الكريم:</label>
+            <input type="text" id="custName" class="form-control" placeholder="أدخل اسمك هنا">
+        </div>
+        <div class="form-group">
+            <label>ملاحظات إضافية:</label>
+            <input type="text" id="orderNotes" class="form-control" placeholder="بدون سكر، حليب لوز...">
+        </div>
+
+        <div style="display:flex; justify-style:space-between; margin:15px 0; font-weight:bold; font-size:16px;">
+            <span>الإجمالي:</span>
+            <span id="cartTotal">OMR 0.000</span>
+        </div>
+
+        <button class="submit-btn" onclick="sendOrder()">
+            <i class="fa-brands fa-whatsapp"></i> إرسال الطلب إلى المقهى
+        </button>
+    </div>
+
+    <!-- SETTINGS DRAWER -->
+    <div class="drawer" id="settingsDrawer">
+        <div class="drawer-header">
+            <h3 class="drawer-title">إعدادات n8n Webhook</h3>
+            <button class="close-btn" onclick="closeSettings()">&times;</button>
+        </div>
+        <div class="form-group">
+            <label>رابط الـ Webhook الخاص بك في n8n:</label>
+            <input type="url" id="webhookInput" class="form-control" dir="ltr" placeholder="https://n8n.yourdomain.com/webhook/...">
+        </div>
+        <button class="submit-btn" onclick="saveWebhook()">حفظ الرابط</button>
+    </div>
+
+    <!-- ADMIN DRAWER -->
+    <div class="drawer" id="adminDrawer">
+        <div class="drawer-header">
+            <h3 class="drawer-title">لوحة الإدارة (الفواتير)</h3>
+            <button class="close-btn" onclick="closeAdmin()">&times;</button>
+        </div>
+        <div style="background: var(--text-navy); color: var(--bg-sage); padding: 15px; border-radius: 12px; margin-bottom: 15px; text-align: center;">
+            <div style="font-size: 14px; opacity: 0.8;">إجمالي المبيعات</div>
+            <div id="adminTotalRevenue" style="font-size: 24px; font-weight: bold; margin-top: 5px;">OMR 0.000</div>
+        </div>
+        <div id="adminOrdersList" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 15px;">
+            <!-- Orders rendered here -->
+        </div>
+        <button class="submit-btn" style="background: #e74c3c;" onclick="clearOrders()">
+            <i class="fa-solid fa-trash"></i> مسح السجلات
+        </button>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div class="toast" id="toast">تمت إضافة المنتج إلى السلة</div>
+
+    <script>
+        // MENU DATA
+        const menuData = [
+            // COFFEE
+            { id: 1, name: 'Espresso', category: 'COFFEE', price: 0.900 },
+            { id: 2, name: 'Americano', category: 'COFFEE', price: 1.000 },
+            { id: 3, name: 'Cappuccino', category: 'COFFEE', price: 1.300 },
+            { id: 4, name: 'Cortado', category: 'COFFEE', price: 1.300 },
+            { id: 5, name: 'Latte', category: 'COFFEE', price: 1.400 },
+            { id: 6, name: 'Spanish latte', category: 'COFFEE', price: 1.500 },
+            { id: 7, name: 'Creamy Espresso', category: 'COFFEE', price: 1.600 },
+            { id: 8, name: 'Frappuccino', category: 'COFFEE', price: 1.600 },
+            
+            // FILTER COFFEE
+            { id: 9, name: 'v60', category: 'FILTER COFFEE', price: 1.700 },
+            { id: 10, name: 'coldbrew', category: 'FILTER COFFEE', price: 1.700 },
+            
+            // SIGNATURES
+            { id: 11, name: 'Space Brew', category: 'SIGNATURES', price: 1.800 },
+            { id: 12, name: 'Spanish Peach', category: 'SIGNATURES', price: 1.800 },
+            
+            // MATCHA
+            { id: 13, name: 'Matcha classic', category: 'MATCHA', price: 1.800 },
+            { id: 14, name: 'Matcha Strawbarry', category: 'MATCHA', price: 1.900 },
+            { id: 15, name: 'Matcha Bluebarry', category: 'MATCHA', price: 1.900 },
+            { id: 16, name: 'Matcha Ube', category: 'MATCHA', price: 2.000 },
+            
+            // TEA
+            { id: 17, name: 'Ice tea Peach', category: 'TEA', price: 1.500 },
+            { id: 18, name: 'Ice tea Passion', category: 'TEA', price: 1.500 },
+            { id: 19, name: 'Ice tea Mango', category: 'TEA', price: 1.500 },
+            { id: 20, name: 'Hibiscus', category: 'TEA', price: 1.400 },
+            
+            // SWEETS
+            { id: 21, name: 'Cookies', category: 'SWEETS', price: 0.600 },
+            { id: 22, name: 'Bounty balls', category: 'SWEETS', price: 1.200 },
+            { id: 23, name: 'Mango trifle', category: 'SWEETS', price: 1.700 },
+            { id: 24, name: 'Brownie', category: 'SWEETS', price: 1.500 },
+            { id: 25, name: 'San Sebastian', category: 'SWEETS', price: 2.200 }
+        ];
+
+        let cart = [];
+        let webhookUrl = localStorage.getItem('space_webhook_url') || '';
+
+        // INITIALIZE
+        document.addEventListener('DOMContentLoaded', () => {
+            renderMenu('ALL');
+            if(webhookUrl) {
+                document.getElementById('webhookInput').value = webhookUrl;
+            }
+        });
+
+        // RENDER MENU
+        function renderMenu(category) {
+            const menuContainer = document.getElementById('menuList');
+            menuContainer.innerHTML = '';
+
+            const filtered = category === 'ALL' 
+                ? menuData 
+                : menuData.filter(item => item.category === category);
+
+            filtered.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'item-card';
+                card.innerHTML = `
+                    <button class="add-btn" onclick="addToCart(${item.id})">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                    <div class="item-info">
+                        <div class="item-name">${item.name}</div>
+                        <div class="item-price">OMR ${item.price.toFixed(3)}</div>
+                    </div>
+                `;
+                menuContainer.appendChild(card);
+            });
+        }
+
+        // FILTER CATEGORY
+        function filterCategory(cat, btn) {
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderMenu(cat);
+        }
+
+        // CART LOGIC
+        function addToCart(id) {
+            const product = menuData.find(p => p.id === id);
+            const existing = cart.find(item => item.id === id);
+
+            if (existing) {
+                existing.qty++;
+            } else {
+                cart.push({ ...product, qty: 1 });
+            }
+
+            updateCartUI();
+            showToast(`تمت إضافة ${product.name} إلى السلة`);
+        }
+
+        function updateCartQty(id, delta) {
+            const item = cart.find(i => i.id === id);
+            if (!item) return;
+
+            item.qty += delta;
+            if (item.qty <= 0) {
+                cart = cart.filter(i => i.id !== id);
+            }
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const badge = document.getElementById('cartBadge');
+            const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+            badge.textContent = totalQty;
+
+            const cartContainer = document.getElementById('cartItems');
+            cartContainer.innerHTML = '';
+
+            let total = 0;
+
+            if (cart.length === 0) {
+                cartContainer.innerHTML = '<p style="text-align:center; padding:20px; opacity:0.7;">السلة فارغة حالياً</p>';
+            } else {
+                cart.forEach(item => {
+                    const itemTotal = item.price * item.qty;
+                    total += itemTotal;
+
+                    const row = document.createElement('div');
+                    row.className = 'cart-item';
+                    row.innerHTML = `
+                        <div class="qty-controls">
+                            <button class="qty-btn" onclick="updateCartQty(${item.id}, 1)">+</button>
+                            <span>${item.qty}</span>
+                            <button class="qty-btn" onclick="updateCartQty(${item.id}, -1)">-</button>
+                        </div>
+                        <div style="text-align:right;">
+                            <div style="font-weight:bold; font-size:14px;">${item.name}</div>
+                            <div style="font-size:12px; opacity:0.8;">OMR ${itemTotal.toFixed(3)}</div>
+                        </div>
+                    `;
+                    cartContainer.appendChild(row);
+                });
+            }
+
+            document.getElementById('cartTotal').textContent = `OMR ${total.toFixed(3)}`;
+        }
+
+        // MODAL TOGGLES
+        function toggleCart() {
+            const drawer = document.getElementById('cartDrawer');
+            const overlay = document.getElementById('overlay');
+            drawer.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
+
+        function openSettings() {
+            document.getElementById('settingsDrawer').classList.add('active');
+            document.getElementById('overlay').classList.add('active');
+        }
+
+        function closeSettings() {
+            document.getElementById('settingsDrawer').classList.remove('active');
+            document.getElementById('overlay').classList.remove('active');
+        }
+
+        function closeAllModals() {
+            document.getElementById('cartDrawer').classList.remove('active');
+            document.getElementById('settingsDrawer').classList.remove('active');
+            document.getElementById('adminDrawer').classList.remove('active');
+            document.getElementById('overlay').classList.remove('active');
+        }
+
+        function saveWebhook() {
+            const val = document.getElementById('webhookInput').value.trim();
+            webhookUrl = val;
+            localStorage.setItem('space_webhook_url', val);
+            showToast('تم حفظ رابط Webhook بنجاح');
+            closeSettings();
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2500);
+        }
+
+        // SEND ORDER TO N8N
+        async function sendOrder() {
+            if (cart.length === 0) {
+                alert('السلة فارغة، يرجى اختيار منتجات أولاً.');
+                return;
+            }
+
+            const name = document.getElementById('custName').value.trim() || 'عميل';
+            const notes = document.getElementById('orderNotes').value.trim();
+
+            const total = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
+
+            const payload = {
+                cafe: "Space Cafe",
+                customerName: name,
+                orderType: "درايف ثرو",
+                notes: notes,
+                items: cart.map(i => ({
+                    name: i.name,
+                    quantity: i.qty,
+                    unitPrice: i.price,
+                    totalPrice: parseFloat((i.price * i.qty).toFixed(3))
+                })),
+                grandTotal: parseFloat(total.toFixed(3)),
+                currency: "OMR",
+                timestamp: new Date().toISOString()
+            };
+
+            // حفظ الطلب محلياً ليظهر في لوحة الإدارة
+            let savedOrders = JSON.parse(localStorage.getItem('space_cafe_orders') || '[]');
+            savedOrders.push(payload);
+            localStorage.setItem('space_cafe_orders', JSON.stringify(savedOrders));
+
+            if (!webhookUrl) {
+                alert('يرجى ضبط رابط Webhook من أيقونة الإعدادات أولاً لتفعيل التوصيل بالواتساب.');
+                openSettings();
+                return;
+            }
+
+            try {
+                showToast('جاري إرسال الطلب...');
+                const response = await fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (response.ok) {
+                    alert('تم إرسال طلبك بنجاح إلى المقهى!');
+                    cart = [];
+                    updateCartUI();
+                    toggleCart();
+                } else {
+                    alert('حدث خطأ أثناء الإرسال. يرجى التأكد من رابط Webhook.');
+                }
+            } catch (err) {
+                alert('عذراً، فشل الاتصال بالخادم. تأكد من إنترنت أو رابط Webhook.');
+            }
+        }
+
+        // ADMIN LOGIC (لوحة الإدارة)
+        function openAdmin() {
+            const pass = prompt('الرجاء إدخال كلمة المرور للوحة الإدارة:');
+            if (pass === '1234') {
+                renderAdmin();
+                document.getElementById('adminDrawer').classList.add('active');
+                document.getElementById('overlay').classList.add('active');
+            } else if (pass !== null) {
+                alert('كلمة المرور خاطئة!');
+            }
+        }
+
+        function closeAdmin() {
+            document.getElementById('adminDrawer').classList.remove('active');
+            document.getElementById('overlay').classList.remove('active');
+        }
+
+        function renderAdmin() {
+            const savedOrders = JSON.parse(localStorage.getItem('space_cafe_orders') || '[]');
+            const list = document.getElementById('adminOrdersList');
+            let totalRevenue = 0;
+            list.innerHTML = '';
+
+            if (savedOrders.length === 0) {
+                list.innerHTML = '<div style="text-align:center; padding: 20px; opacity: 0.6;">لا توجد طلبات سابقة</div>';
+            } else {
+                // عرض الطلبات من الأحدث للأقدم
+                savedOrders.reverse().forEach(order => {
+                    totalRevenue += order.grandTotal;
+                    
+                    const d = new Date(order.timestamp);
+                    const dateStr = d.toLocaleDateString('ar-OM') + ' ' + d.toLocaleTimeString('ar-OM', {hour: '2-digit', minute:'2-digit'});
+
+                    const card = document.createElement('div');
+                    card.style.cssText = 'background: rgba(255,255,255,0.4); border: 1px solid var(--card-border); padding: 12px; border-radius: 12px; font-size: 13px; text-align: right;';
+                    
+                    let itemsHtml = order.items.map(i => `<div>${i.quantity}x ${i.name}</div>`).join('');
+
+                    card.innerHTML = `
+                        <div style="display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 8px;">
+                            <span>${order.customerName || 'عميل'} (درايف ثرو)</span>
+                            <span>OMR ${order.grandTotal.toFixed(3)}</span>
+                        </div>
+                        <div style="opacity: 0.8; margin-bottom: 8px; font-size: 11px;">${dateStr}</div>
+                        <div style="background: rgba(0,0,0,0.05); padding: 8px; border-radius: 6px;">
+                            ${itemsHtml}
+                        </div>
+                    `;
+                    list.appendChild(card);
+                });
+            }
+
+            document.getElementById('adminTotalRevenue').textContent = `OMR ${totalRevenue.toFixed(3)}`;
+        }
+
+        function clearOrders() {
+            if (confirm('هل أنت متأكد من مسح جميع سجلات الطلبات؟ لا يمكن التراجع عن هذا الإجراء.')) {
+                localStorage.removeItem('space_cafe_orders');
+                renderAdmin();
+                showToast('تم مسح السجلات بنجاح');
+            }
+        }
+    </script>
+</body>
+</html>
