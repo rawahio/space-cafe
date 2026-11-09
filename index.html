@@ -476,7 +476,7 @@
                 <span>السلة</span>
                 <span class="cart-badge" id="cartBadge">0</span>
             </button>
-            <!-- إخفاء زر الإعدادات عن العملاء تلقائياً -->
+            <!-- زر الإعدادات مخفي عن العملاء -->
             <button class="btn-icon" onclick="openSettings()" title="إعدادات n8n Webhook" style="display: none;">
                 <i class="fa-solid fa-gear"></i>
             </button>
@@ -634,14 +634,14 @@
 
         let cart = [];
         
-        // رابط الـ Webhook المثبت تلقائياً لجميع العملاء
-        const DEFAULT_WEBHOOK_URL = "https://spacecafe.app.n8n.cloud/webhook/0f1bc6ce-efc4-42ea-be9a-7c9fc7dfc571";
-        let webhookUrl = localStorage.getItem('space_webhook_url') || DEFAULT_WEBHOOK_URL;
+        // رابط Production Webhook الجديد والرسمي لـ n8n الخاص بك
+        const DEFAULT_WEBHOOK_URL = "https://ydhycjd.app.n8n.cloud/webhook/35328820-8046-44de-aad4-931f0549467d";
+        let webhookUrl = DEFAULT_WEBHOOK_URL;
 
         // INITIALIZE
         document.addEventListener('DOMContentLoaded', () => {
             renderMenu('ALL');
-            if(webhookUrl && document.getElementById('webhookInput')) {
+            if(document.getElementById('webhookInput')) {
                 document.getElementById('webhookInput').value = webhookUrl;
             }
         });
@@ -769,7 +769,6 @@
         function saveWebhook() {
             const val = document.getElementById('webhookInput').value.trim();
             webhookUrl = val || DEFAULT_WEBHOOK_URL;
-            localStorage.setItem('space_webhook_url', webhookUrl);
             showToast('تم حفظ رابط Webhook بنجاح');
             closeSettings();
         }
